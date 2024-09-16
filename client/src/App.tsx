@@ -1,40 +1,19 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import "@mantine/core/styles.css";
 import "./App.css";
-import { getBills } from "./api/routes/bill";
-function App() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await getBills();
-      console.log(data);
-      data.data?.forEach((bill) => {
-        console.log(bill.title);
-      });
-    };
+import { Card, Container, createTheme, MantineProvider } from "@mantine/core";
+import TabsContainer from "./components/tabsContainer";
 
-    fetchData();
-  }, []);
+const theme = createTheme({});
+
+function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <MantineProvider theme={theme}>
+      <Container size={"lg"} miw={"50%"}>
+        <Card shadow="sm" miw="100%" padding="lg" radius="md" withBorder>
+          <TabsContainer />
+        </Card>
+      </Container>
+    </MantineProvider>
   );
 }
 

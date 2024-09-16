@@ -4,7 +4,9 @@ import { ParseCSVResponse, ParseCSVStatus } from "shared";
 
 function filterEmptyValues<T = any>(data: T[]): T[] {
   return data.filter((item) => {
-    return Object.values(item as any).some((value: any) => value !== "" && value !== undefined);
+    return Object.values(item as any).some(
+      (value: any) => value !== "" && value !== undefined && value !== null
+    );
   });
 }
 
@@ -22,6 +24,7 @@ export function parseCSV<T = any>(
 
     Papa.parse(fileContent, {
       header: true,
+      dynamicTyping: true,
       complete: (results) => {
         if (results.errors.length > 0) console.error("CSV parsing errors:", results.errors);
         const data = filter_empty ? filterEmptyValues(results.data) : results.data;
