@@ -1,7 +1,7 @@
 export interface Bill {
   id: number;
   title: string;
-  primarySponsor: number;
+  sponsor_id: number;
 }
 export interface Legislator {
   id: number;
@@ -9,7 +9,7 @@ export interface Legislator {
 }
 export interface Vote {
   id: number;
-  billID: number;
+  bill_id: number;
 }
 export enum VoteType {
   YES = 1,
@@ -17,9 +17,9 @@ export enum VoteType {
 }
 export interface VoteResult {
   id: number;
-  legislatorID: number;
-  voteID: number;
-  voteType: VoteType;
+  legislator_id: number;
+  vote_id: number;
+  vote_type: VoteType;
 }
 export type Test = {
   name: string;
