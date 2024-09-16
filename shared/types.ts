@@ -25,3 +25,17 @@ export interface VoteResult {
   voteID: number;
   voteType: VoteType;
 }
+
+export type Test = {
+  name: string;
+};
+
+export enum ParseCSVStatus {
+  SUCCESS = "success",
+  ERROR = "error",
+}
+export type ParseCSVResponse = {
+  status: ParseCSVStatus;
+  data: any;
+  errors: any;
+};

@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/papaparse": "^5.3.14",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "shared": "file:../shared"
+    "papaparse": "^5.4.1",
+    "shared": "file:../shared/dist"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

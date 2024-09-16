@@ -6,6 +6,6 @@
     "outDir": "./dist",
     "strict": true
   },
-  "include": ["*.ts"],
+  "include": ["*.ts", "index.ts", "types.ts"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

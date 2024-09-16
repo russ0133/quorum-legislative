@@ -1,3 +1,37 @@
-export interface MyTable {
-    name: string;
+import Papa from "papaparse";
+
+export interface Bill {
+  id: number;
+  title: string;
+  primarySponsor: number;
 }
+export interface Legislator {
+  id: number;
+  name: string;
+}
+export interface Vote {
+  id: number;
+  billID: number;
+}
+export declare enum VoteType {
+  YES = 1,
+  NO = 2,
+}
+export interface VoteResult {
+  id: number;
+  legislatorID: number;
+  voteID: number;
+  voteType: VoteType;
+}
+export type Test = {
+  name: string;
+};
+export declare enum ParseCSVStatus {
+  SUCCESS = "success",
+  ERROR = "error",
+}
+export type ParseCSVResponse<T = any> = {
+  status: ParseCSVStatus;
+  data: T[] | null;
+  errors: Papa.ParseError[] | null;
+};
