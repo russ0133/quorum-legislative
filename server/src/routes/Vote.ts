@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import path from "path";
 import { parseCSV } from "../utils/csvUtils";
-import { ParseCSVStatus, Vote, VoteResult } from "shared";
+import { ParseCSVStatus, Vote } from "shared";
 
 const VOTES_PATH = path.join(__dirname, "../data/votes.csv");
 const fetchVotes = (req: Request, res: Response) => {
