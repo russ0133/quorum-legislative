@@ -2,7 +2,16 @@ import Papa from "papaparse";
 import fs from "fs";
 import { ParseCSVResponse, ParseCSVStatus } from "shared";
 
-export function parseCSV<T = any>(file_path: string): ParseCSVResponse<T> | undefined {
+function filterEmptyValues<T = any>(data: T[]): T[] {
+  return data.filter((item) => {
+    return Object.values(item as any).some((value: any) => value !== "" && value !== undefined);
+  });
+}
+
+export function parseCSV<T = any>(
+  file_path: string,
+  filter_empty: boolean = true
+): ParseCSVResponse<T> | undefined {
   try {
     const fileContent = fs.readFileSync(file_path, "utf8");
     let response: ParseCSVResponse = {
@@ -15,9 +24,11 @@ export function parseCSV<T = any>(file_path: string): ParseCSVResponse<T> | unde
       header: true,
       complete: (results) => {
         if (results.errors.length > 0) console.error("CSV parsing errors:", results.errors);
+        const data = filter_empty ? filterEmptyValues(results.data) : results.data;
+
         response = {
           status: ParseCSVStatus.SUCCESS,
-          data: results.data,
+          data,
           errors: results.errors,
         };
       },
