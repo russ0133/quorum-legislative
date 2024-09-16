@@ -37,7 +37,7 @@ Access the server at http://localhost:5173/
 2. How would you change your solution to account forfuture columns that might be
    requested, such as “Bill Voted On Date” or“Co-Sponsors”?
 
-- All the data in the tables are easily extensible since the columns are inferred from a typescript type (usually would be inferred by a SQL schema, e.g Prisma output types) and thus can be extended simply by editing the "Database" and the types "{XXXXX}TablesColumnsOverrides" and "{XXXX}" (e.g LegislatorTablesColumnsOverrides and Legislator).
+- All the data in the tables are easily extensible since the columns are inferred from a typescript type (usually would be inferred by a SQL schema, e.g Prisma output types) and thus can be extended simply by editing the "Database" and the types "{XXXXX}TablesColumnsOverrides" and "{XXXX}" (e.g Type LegislatorTablesColumnsOverrides @ /client/src/global/tableHeaderOverrides.ts and Type Legislator @ shared/types.ts ).
 
 3. How would you change your solution if instead ofreceiving CSVs of data, you were given a
    list of legislators or bills that you should generate a CSV for?
