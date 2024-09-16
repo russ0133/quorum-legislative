@@ -6,7 +6,7 @@ export function parseCSV<T = any>(file_path: string): ParseCSVResponse<T> | unde
   try {
     const fileContent = fs.readFileSync(file_path, "utf8");
     let response: ParseCSVResponse = {
-      status: ParseCSVStatus.SUCCESS,
+      status: ParseCSVStatus.ERROR,
       data: null,
       errors: null,
     };
@@ -31,6 +31,6 @@ export function parseCSV<T = any>(file_path: string): ParseCSVResponse<T> | unde
     else return undefined;
   } catch (error) {
     console.error("File reading error:", error);
-    return { status: ParseCSVStatus.ERROR, data: null, errors: [error] };
+    return { status: ParseCSVStatus.ERROR, data: null, errors: [error as Papa.ParseError] };
   }
 }
