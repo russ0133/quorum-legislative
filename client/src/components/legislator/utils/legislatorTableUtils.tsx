@@ -1,4 +1,4 @@
-import { Bill, Legislator, Vote, VoteResult, VoteType } from "shared";
+import { Legislator, VoteResult, VoteType } from "shared";
 
 export function getLegislatorVoteCount(legislator: Legislator, voteResults: VoteResult[]) {
   const votes = voteResults.filter((vote) => vote.legislator_id === legislator.id);
@@ -7,20 +7,13 @@ export function getLegislatorVoteCount(legislator: Legislator, voteResults: Vote
   return { supported, opposed };
 }
 
-export function getRelatedVoteResult(votes: Vote[], bill: Bill) {
-  const voteResult = votes.find((vote) => vote.bill_id === bill.id);
-  return voteResult;
-}
-
-export function getVoteResult(voteResults: VoteResult[], vote?: Vote) {
-  if (!vote) return null;
-  const voteResult = voteResults.filter((voteResult) => voteResult.vote_id === vote.id);
-  return voteResult;
-}
-
-export function getVoteYesNoCount(voteResults: VoteResult[]) {
-  if (!voteResults) return null;
-  const yes = voteResults.filter((voteResult) => voteResult.vote_type === VoteType.NO).length;
-  const no = voteResults.filter((voteResult) => voteResult.vote_type === VoteType.YES).length;
-  return { yes, no };
-}
+export const renderLegislatorCell = (
+  legislator: Legislator,
+  column: { key: string; label: string }
+) => {
+  const value = legislator[column.key as keyof Legislator];
+  if (column.key === "opposed" || column.key === "supported") {
+    return `${value} bill${typeof value === "number" && value > 1 ? "s" : ""}`;
+  }
+  return value;
+};

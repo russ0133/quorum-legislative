@@ -1,6 +1,7 @@
 import { Table, Container, Title } from "@mantine/core";
 import { Bill, Legislator, VoteResult } from "shared";
 import useLegislatorsTable from "../components/legislator/hooks/useLegislatorsTable";
+import { renderLegislatorCell } from "../components/legislator/utils/legislatorTableUtils";
 
 type Props = {
   bills: Bill[];
@@ -24,11 +25,11 @@ function LegislatorsView({ bills, legislators, voteResults }: Props) {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {legislatorsTable.rows.map((bill) => (
-            <Table.Tr key={bill.id}>
+          {legislatorsTable.rows.map((legislator) => (
+            <Table.Tr key={legislator.id}>
               {legislatorsTable.columns.map((column) => (
-                <Table.Td key={`${bill.id}-${column.key}`}>
-                  {bill[column.key as keyof Legislator]}
+                <Table.Td key={`${legislator.id}-${column.key}`}>
+                  {renderLegislatorCell(legislator, column)}
                 </Table.Td>
               ))}
             </Table.Tr>
