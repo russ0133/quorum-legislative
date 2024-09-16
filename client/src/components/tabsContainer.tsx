@@ -1,10 +1,11 @@
 import { Tabs, rem, Text } from "@mantine/core";
-import { IconPhoto, IconMessageCircle, IconSettings } from "@tabler/icons-react";
+import { IconPhoto, IconMessageCircle } from "@tabler/icons-react";
 import BillsView from "../views/bill-view";
 import useBillsData from "./bill/hooks/useBillsData";
 import useLegislatorsData from "./legislator/hooks/useLegislatorsData";
 import useVoteResultsData from "./voteResults/hooks/useVoteResults";
 import useVotesData from "./votes/hooks/useVotesData";
+import LegislatorsView from "../views/legislator-view";
 
 export default function TabsContainer() {
   const { bills, isLoading, error } = useBillsData();
@@ -35,11 +36,8 @@ export default function TabsContainer() {
         <Tabs.Tab value="bills" leftSection={<IconPhoto style={iconStyle} />}>
           Bills
         </Tabs.Tab>
-        <Tabs.Tab value="messages" leftSection={<IconMessageCircle style={iconStyle} />}>
-          Messages
-        </Tabs.Tab>
-        <Tabs.Tab value="settings" leftSection={<IconSettings style={iconStyle} />}>
-          Settings
+        <Tabs.Tab value="legislators" leftSection={<IconMessageCircle style={iconStyle} />}>
+          Legislators
         </Tabs.Tab>
       </Tabs.List>
 
@@ -52,9 +50,9 @@ export default function TabsContainer() {
         />
       </Tabs.Panel>
 
-      <Tabs.Panel value="messages">Messages tab content</Tabs.Panel>
-
-      <Tabs.Panel value="settings">Settings tab content</Tabs.Panel>
+      <Tabs.Panel value="legislators">
+        <LegislatorsView bills={bills} legislators={legislators} voteResults={voteResults} />
+      </Tabs.Panel>
     </Tabs>
   );
 }

@@ -6,7 +6,7 @@ import {
   getVoteResult,
   getVoteYesNoCount,
 } from "../utils/billTableUtils";
-import { BillTableColumns } from "../../../global/tableHeaderOverrides";
+import { BillsTableColumnsOverrides } from "../../../global/tableHeaderOverrides";
 
 type Props = {
   bills: Bill[];
@@ -35,10 +35,12 @@ function useBillsTable({ bills, voteResults, legislators, votes }: Props) {
 
   const columns = useMemo(() => {
     if (bills && bills.length > 0) {
-      const columnKeys = Object.keys(BillTableColumns) as Array<keyof typeof BillTableColumns>;
+      const columnKeys = Object.keys(BillsTableColumnsOverrides) as Array<
+        keyof typeof BillsTableColumnsOverrides
+      >;
       return columnKeys.map((key) => ({
         key,
-        label: BillTableColumns[key],
+        label: BillsTableColumnsOverrides[key],
       }));
     }
     return [];

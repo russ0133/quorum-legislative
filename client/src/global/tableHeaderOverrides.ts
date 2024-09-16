@@ -4,7 +4,7 @@ export type Keys<T> = {
   [key in keyof T]: string;
 };
 
-export const BillTableColumns: { [key in keyof (Bill & { yay: number; nay: number })]: string } = {
+export const BillsTableColumnsOverrides: Keys<Bill & { yay: number; nay: number }> = {
   id: "ID",
   title: "Title",
   sponsor_id: "Primary Sponsor",
@@ -12,9 +12,13 @@ export const BillTableColumns: { [key in keyof (Bill & { yay: number; nay: numbe
   nay: "Negative Votes",
 };
 
-export const LegislatorOverrides: Keys<Legislator> = {
+export const LegislatorTablesColumnsOverrides: Keys<
+  Legislator & { supported: number; opposed: number }
+> = {
   id: "ID",
   name: "Name",
+  supported: "Supported",
+  opposed: "Opposed",
 };
 
 export const VoteOverrides: Keys<Vote> = {
